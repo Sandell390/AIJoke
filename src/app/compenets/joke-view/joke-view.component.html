@@ -1,0 +1,18 @@
+<div class="joke-container">
+    <div class="joke-box">
+        <h3 class="joke-title">Joke</h3>
+        <p *ngIf="(JokeObservable | async) as joke, else loading" class="joke-text">{{ joke }}</p>
+    </div>
+    <div class="punchline-box">
+        <h3 class="punchline-title">Punchline</h3>
+        <p *ngIf="(PunchlineObservable | async) as punchline, else loading" class="punchline-text">{{ punchline }}</p>
+    </div>
+    <div class="button-container">
+        <input [(ngModel)]="topic" type="text" placeholder="Enter a topic for the joke">
+        <button [disabled]="toggleButton" (click)="generateJoke()">Generate new joke</button>
+    </div>
+</div>
+
+<ng-template #loading>
+    <p class="punchline-text">Loading....</p>
+</ng-template>
